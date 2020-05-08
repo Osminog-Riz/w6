@@ -1,0 +1,56 @@
+#events{
+	border-radius:10px;
+	border-color:black;
+	background-color:blue;
+	text-align:center;
+	color:white;
+}
+
+.error {
+  border: 2px solid red;
+}
+
+body {
+    font-family: sans-serif;
+		background-image:url("iNH9HZTSN.jpg");
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 450px;
+    margin: 2rem auto;
+    background-color: #A9A9A9;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+label {
+    font-weight: bold;
+}
+
+input, select, textarea {
+    margin: 0.75em 0;
+}
+
+input[type="submit"] {
+    border-radius: 5px;
+    background-color: #efefef;
+    color: #444;
+    border: none;
+    padding: 10px 50px;
+    font-size: 1em;
+}
+
+input[type="submit"]:hover {
+    background-color: #ececec;
+    color: #222;
+    cursor: pointer;
+}
+
+input, select, textarea {
+    padding: 8px 8px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
