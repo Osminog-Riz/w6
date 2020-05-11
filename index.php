@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       $user_data = $stmt->fetch(); //получаем в виде массива данных
       $values['name'] = strip_tags($user_data['name']);
       $values['email'] = strip_tags($user_data['email']);
-      $values['year'] = strip_tags($user_data['age']);
+      $values['year'] = strip_tags($user_data['year']);
       $values['sex'] = strip_tags($user_data['sex']);
       $values['limbs'] = strip_tags($user_data['limbs']);
       $values['bio'] = strip_tags($user_data['bio']);
