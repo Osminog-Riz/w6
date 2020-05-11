@@ -1,15 +1,9 @@
-#events{
-	border-radius:10px;
-	border-color:black;
-	background-color:blue;
-	text-align:center;
-	color:white;
+html {
+    background-color: #dbdbdb;
 }
-
 .error {
   border: 2px solid red;
 }
-
 body {
     font-family: sans-serif;
 		background-image:url("iNH9HZTSN.jpg");
@@ -33,24 +27,21 @@ input, select, textarea {
     margin: 0.75em 0;
 }
 
-input[type="submit"] {
-    border-radius: 5px;
-    background-color: #efefef;
-    color: #444;
-    border: none;
-    padding: 10px 50px;
-    font-size: 1em;
-}
-
-input[type="submit"]:hover {
-    background-color: #ececec;
-    color: #222;
+.btn {
     cursor: pointer;
 }
 
-input, select, textarea {
-    padding: 8px 8px;
-    font-size: 1em;
+td:hover {
+    cursor: pointer;
+}
+
+table {
+    margin: 0 auto;
     border-radius: 5px;
-    border: 1px solid #ccc;
+}
+@media screen and (min-width: 426px) {
+    #form {
+        height: auto;
+        margin: 2em auto;
+    }
 }
