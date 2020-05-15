@@ -8,6 +8,10 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
     print('<h1>401 Требуется авторизация</h1>');
     exit();
 }
+// Используем метод Double Submit Cookie отсюда https://habr.com/ru/post/318748/
+// Создаем токен и помещаем его в куки, а также в input формы.
+$token = md5('ilovekubsu' . $_SERVER['PHP_AUTH_USER']);
+setcookie('token', $token, time() + 24 * 60 * 60);
 
 $db_user = 'u16355';   // Логин БД
 $db_pass = '2629125';  // Пароль БД
@@ -16,6 +20,7 @@ $db = new PDO('mysql:host=localhost;dbname=u16355', $db_user, $db_pass, array(
     PDO::ATTR_PERSISTENT => true
 ));
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_POST['token'] === $_COOKIE['token']) {
     try {
         $stmt = $db->prepare('DELETE FROM web6 WHERE login = ?');
         $stmt->execute(array(
@@ -26,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 }
-
+}
 try {
     $stmt = $db->query('SELECT * FROM app6');
     ?>
@@ -38,8 +43,9 @@ try {
     </head>
     <body>
     <form action="" method="post">
-        <table class="table is-hoverable is-fullwidth">
-            <thead>
+        <input type="hidden" name="token" value="<?php print($token); ?>">
+          <table class="table is-hoverable is-fullwidth">
+              <thead>
             <tr>
                 <th>Логин</th>
                 <th>Пароль</th>
@@ -55,14 +61,17 @@ try {
             </thead>
             <tbody>
             <?php
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                print('<tr>');
-                foreach ($row as $cell) {
-                    print('<td>' . $cell . '</td>');
-                }
-                print('<td><button class="button is-info is-small is-danger is-light" name="remove" type="submit" value="' . $row['login'] . '">x</button></td>');
-                print('</tr>');
-            }
+           while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                  print('<tr>');
+                  foreach ($row as $cell) {
+                      print('<td>' . strip_tags($cell) . '</td>');
+                  }
+                  print('<td><button class="button is-info is-small is-danger is-light" name="remove" type="submit" value="'
+                  . strip_tags($row['login'])
+                  . '">x</button></td>');
+                  print('</tr>');
+              }
+
             ?>
             </tbody>
         </table>
