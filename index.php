@@ -36,11 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   }
 
   $errors = array();
-  $errors['name'] = empty($_COOKIE['name_error']) ? '' : $_COOKIE['name_error'];
-  $errors['email'] = !empty($_COOKIE['email_error']);
-  $errors['powers'] = !empty($_COOKIE['powers_error']);
-  $errors['bio'] = !empty($_COOKIE['bio_error']);
-  $errors['check'] = !empty($_COOKIE['check_error']);
+  $errors['name'] = empty($_COOKIE['name_error']) ? '' : strip_tags($_COOKIE['name_error']);
+  $errors['email'] = empty($_COOKIE['email_error']) ? '' : strip_tags($_COOKIE['email_error']);
+  $errors['powers'] = empty($_COOKIE['powers_error']) ? '' : strip_tags($_COOKIE['powers_error']);
+  $errors['bio'] = empty($_COOKIE['bio_error']) ? '' : strip_tags($_COOKIE['bio_error']);
+  $errors['check'] = empty($_COOKIE['check_error']) ? '' : strip_tags($_COOKIE['check_error']);
 
   if ($errors['name'] == 'null') { //проверка ошибок в имени
     setcookie('name_error', '', 100000);
